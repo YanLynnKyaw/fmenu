@@ -13,14 +13,15 @@ class SchoolFoodMenuController extends Controller
 {
     public function showSchoolFoodMenu($school_slug)
     {
-        $school = School::where('slug', $school_slug)->firstOrFail();
+        $school = School::where('school_name', $school_slug)->firstOrFail();
         $canteen = Canteen::where('school_id', $school->id)->with('category.fooditem')->get();
         $category = Category::whereIn('canteen_id', $canteen->pluck('canteen_id'))->get();
         $fooditem = FoodItem::whereIn('category_id', $category->pluck('category_id'))->get();
         
-        $view = 'Show.' . $school->slug . '_food_menu';
+        // $view = 'Show.' . $school->slug . '_food_menu';
 
-        return view($view, [
+
+        return view('show_food_menu', [
             'school' => $school,
             'canteen' => $canteen,
             'category' => $category,

@@ -56,11 +56,23 @@ class SchoolController extends Controller
     public function destroy(School $school,$school_id)
     {
         $school = School::find($school_id);
-
+        if ($school->fooditem()->exists()) 
+        {
+            $school->fooditem()->delete();
+        }
+        if ($school->category()->exists()) 
+        {
+            $school->category()->delete();
+        }
         if ($school->canteen()->exists()) 
         {
             $school->canteen()->delete();
         }
+        
+        // $canteen = $school->canteen;
+        // $category = $canteen->category;
+        
+        
     
         $school->delete();
         
