@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700&family=Playpen+Sans:wght@400;600&display=swap');
+
+html{
+    overflow-x: hidden;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background: linear-gradient(to right, #A7D397 0%, #c8eef5 250%);
+    background: linear-gradient(to bottom, #A7D397 0%, #c8f5d2 200%);
+    font-family: 'Jost', sans-serif;
+    font-family: 'Playpen Sans', cursive;
+}
+
+.navbar{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    font-size: 40px;
+    text-shadow: 1px 1px 1px black;
+    color: #555843;
+    
+}
+.navbar_sec{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 600;
+    color: #555843;
+}
+h1{
+   border: solid 4px; 
+   margin-top: 20px;
+   padding: 5px;
+   box-shadow: 10px 10px #2c4a31;
+}
+.content{
+    min-height: calc(50vh - 120px);
+    margin-bottom: 50px;
+}
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    height: 100%;
+
+    
+}
+h4{
+    text-decoration: underline;
+    font-weight: 600;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+h3{
+    font-size: 100px;
+    font-weight: 700;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+footer{
+    display: flex;
+    align-items: flex-end;
+    bottom: 0;
+    left: 0;
+}
+.foot{
+    
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+    background: #2c4a31;
+    padding: 10px;
+    color: rgb(229, 232, 232);
+    font-weight: 500;
+    font-size: 15px;
+}
+.row{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.mm{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    justify-content: center;
+}
+
+ul{
+    list-style: none;
+}
+li{
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 38px;
+    margin-bottom: 5px;
+}
+.food_menu{
+    width: 200px;
+    
+
+    
+    /* border: solid #555843 2px;
+    border-radius: 20px;
+    box-shadow:2px 2px 2px 2px #515048;
+    padding: 10px;
+    color: #313531; */
+}
+.food_price{
+    width: 150px;
+    
+    /* border: solid #555843 2px;
+    border-radius: 20px;
+    box-shadow:2px 2px 2px 2px #515048;
+    padding: 10px;
+    color: #313531; */
+
+}
+
+
+
+
+  
+  
