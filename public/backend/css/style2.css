@@ -253,6 +253,21 @@ body{
     
     
 }
+.newbtnd{
+   
+    display: inline-block;
+    outline: 0;
+    cursor: pointer;
+    
+    font-size: 15px;
+    font-weight: 500;
+    text-align:center;
+    transition-duration: .15s;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+    
+    
+}
 .newbtn1:hover{
     color: #f6f6f9;
     background: #bf3f38;

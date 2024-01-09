@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
-
-
 use App\Models\School;
 use App\Models\Canteen;
-
 use Illuminate\Http\Request;
 use App\Models\Category;
 
@@ -77,6 +74,10 @@ class CategoryController extends Controller
     {
         $category = Category::with('canteen')->findOrFail($category_id);
 
+        foreach($category->fooditem as $fooditem){
+            
+            $category->fooditem()->delete();
+        }
         $category->delete();
         $canteen_id = $category->canteen->getKey();
         

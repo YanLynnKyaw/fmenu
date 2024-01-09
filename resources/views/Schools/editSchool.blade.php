@@ -5,12 +5,8 @@
 
 <div class="card">
     <div class="card-header">Edit School Name</div>
-    <div class="card-body">
-       
-            
+    <div class="card-body">     
         @if ($schools)
-            
-        
         <form action="{{ route('schools.update',$school_id) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method ('PUT')
@@ -20,8 +16,6 @@
                     <input type="text" name="school_name" class="form-control" value="{{ $schools->school_name }}"/>
                 </div>
             </div>
-            
-            
             <div class="text-center">
                 <input type="hidden" name="school_id" value="{{ $school_id }}" />
                 <input type="submit" class="btn btn-primary" value="Update" />
@@ -29,11 +23,6 @@
         </form>
         @endif
     </div>
-    
 </div>
-
-<script>
-
-</script>
 
 @endsection ('content')

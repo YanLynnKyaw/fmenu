@@ -15,7 +15,7 @@ class AuthController extends Controller
 
     public function index()
     {
-        $users = User::all(); // Assuming you have a User model
+        $users = User::all();
         return view('Users', compact('users'));
     }
     public function destroy($id)
@@ -102,12 +102,9 @@ class AuthController extends Controller
 
         $request->validate([
             'role' => 'required|in:admin,editor',
-        ]);
-
-        // Remove existing roles (optional, depending on your application logic)
+        ]);        
         $user->syncRoles([]);
 
-        // Assign the selected role
         $role = Role::where('name', $request->input('role'))->first();
         $user->assignRole($role);
 

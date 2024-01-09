@@ -15,9 +15,7 @@
                         Categroy Creation
                     </div>
                     <div class="card-body">
-                        @if ($canteen)
-                           
-                        
+                        @if ($canteen)  
                         <form action="{{ route('category.store',['canteen_id' => $canteen_id]) }}" method="POST">
                             @csrf
                             @method('post')
@@ -25,7 +23,6 @@
                                 <label for="name">Category Name:</label>
                                 <input type="text" name="category_name" id="category_name" class="form-control" required>
                             </div>
-
                             <button type="submit" class="btn btn-primary">Create Category</button>
                         </form>
                         @endif

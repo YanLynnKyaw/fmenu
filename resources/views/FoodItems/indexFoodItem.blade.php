@@ -2,35 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('backend/css/style2.css') }}">
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script> -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>KBTC Canteen Menu Admin Panel</title>
 </head>
-<body>
-    
+
+<body>    
     <div class="sidebar">
         <a href="{{ route ('schools.index') }}" class="logo">
             <i class='bx bxl-mailchimp'></i>
             <div class="logo-name"><span>Chimp</span>Pro</div>
         </a>
         <ul class="side-menu">
-        
-        
         </ul>
         <ul class="side-menu">
             <li class="de">
-            <form action="{{ route('logout') }}" method="POST">
-                @csrf
-                @method('DELETE')
-                <button class="logout" type="submit"> <i class='bx bx-log-out' ></i>Logout</button>
-            </form>  
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button class="logout" type="submit"> <i class='bx bx-log-out' ></i>Logout</button>
+                </form>  
             </li>
         </ul>
-
     </div>
 
     <!-- Main Content -->
@@ -57,7 +52,6 @@
         </nav>
 
 
-
         <main>
             <div class="header">
                 <div class="left">
@@ -76,16 +70,13 @@
             <div class="bottom-data">
                 <div class="orders">
                     <div class="header">
-                    
                         <i class='bx bx-receipt'></i>
                         <h3>FoodItem List</h3>
                         @if(auth()->user()->can('ed_de','view_only')|| auth()->user()->can('view_only'))
-                        @if ($category)
-                        <a href="{{ route('fooditem.create', ['category_id' => $category_id]) }}" class="newbtn2">Add New FoodItem</a>
-                        @endif
-                        @endif
-                    
-                        
+                            @if ($category)
+                                <a href="{{ route('fooditem.create', ['category_id' => $category_id]) }}" class="newbtn2">Add New FoodItem</a>
+                            @endif
+                        @endif    
                     </div>
                     <table>
                         <thead>
@@ -96,37 +87,31 @@
                             </tr>
                         </thead>
                         <tbody>
-                
-                        @foreach ($fooditem as $fooditem)
-                        <tr>
-
-                            <td>{{ $fooditem->fooditem_name }}</td>
-                            <td>{{ $fooditem->fooditem_price }}</td>
-
-                            <td class="butt">
-                                <form action="{{ route('fooditem.destroy',$fooditem->fooditem_id) }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
+                            @foreach ($fooditem as $fooditem)
+                            <tr>
+                                <td>{{ $fooditem->fooditem_name }}</td>
+                                <td>{{ $fooditem->fooditem_price }}</td>
+                                <td class="butt">
                                     <a href="#" class="newbtn"><span class="newbtn_top">View</span></a>
                                     @if(auth()->user()->can('ed_de')|| auth()->user()->can('view_only'))
                                         <a href="{{ route('fooditem.edit',$fooditem->fooditem_id) }}" class="newbtn"><span class="newbtn_top">Edit</span></a>
-                                        <input type="submit" class="newbtn1" value="Delete">
-                                    @endif
-                                    
-                                </form>
-                            </td>
-                        </tr>
-                        @endforeach
-                        
-                
+                                        <form class="newbtnd" action="{{ route('fooditem.destroy',$fooditem->fooditem_id) }}" onclick="confirmation(event)" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <input type="submit" class="newbtn1" value="Delete">
+                                        </form>
+                                    @endif            
+                                </td>
+                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>   
             </div>
         </main>
-
     </div>
     
+
     <script src="{{ url('backend/js/app2.js')}}"></script>
 </body>
 </html>

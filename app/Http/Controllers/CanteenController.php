@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
-
-
 use App\Models\School;
 use Illuminate\Http\Request;
 use App\Models\Canteen;
@@ -38,7 +36,6 @@ class CanteenController extends Controller
 
     public function store(Request $request,$school_id)
     {
-        //dd($request->canteen_name);
         $schools = School::all();        
         $canteeendata = $request->validate([
             'canteen_name' =>'required',   
@@ -76,6 +73,13 @@ class CanteenController extends Controller
     {
         $canteen = Canteen::with('school')->findOrFail($canteen_id);
 
+        foreach($canteen->category as $category){
+            foreach($category->fooditem as $fooditem){
+                $fooditem->delete();
+            }
+            $category->fooditem()->delete();
+        }
+        $canteen->category()->delete();
         $canteen->delete();
         $school_id = $canteen->school->getKey();
         

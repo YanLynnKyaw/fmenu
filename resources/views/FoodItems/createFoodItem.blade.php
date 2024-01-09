@@ -15,9 +15,7 @@
                         FoodItem Creation
                     </div>
                     <div class="card-body">
-                        @if ($category)
-                           
-                        
+                        @if ($category)    
                         <form action="{{ route('fooditem.store',['category_id' => $category_id]) }}" method="POST">
                             @csrf
                             @method('post')
@@ -26,9 +24,7 @@
                                 <input type="text" name="fooditem_name" id="fooditem_name" class="form-control" required>
                                 <label for="name">FoodItem Price:</label>
                                 <input type="text" name="fooditem_price" id="fooditem_price" class="form-control" required>
-                            
                             </div>
-
                             <button type="submit" class="btn btn-primary">Create FoodItem</button>
                         </form>
                         @endif
@@ -37,7 +33,6 @@
             </div>
         </div>
     </div>
-
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

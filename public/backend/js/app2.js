@@ -70,3 +70,25 @@ toggler.addEventListener('change', function () {
         document.body.classList.remove('dark');
     }
 });
+
+
+       function confirmation(ev) {
+       ev.preventDefault();
+       var form = ev.currentTarget;
+       var urlToRedirect = form.getAttribute('action');  
+       console.log(urlToRedirect);
+
+           swal({
+               title: "Are you sure to Delete this post",
+               text: "You will not be able to revert this!",
+               icon: "warning",
+               buttons: true,
+               dangerMode: true,
+           })
+
+           .then((willCancel) => {
+               if (willCancel) {
+                   form.submit();
+               }  
+           });
+       }

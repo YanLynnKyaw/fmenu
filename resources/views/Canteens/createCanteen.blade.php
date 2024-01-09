@@ -15,9 +15,7 @@
                         Canteen Creation
                     </div>
                     <div class="card-body">
-                        @if ($schools)
-                           
-                        
+                        @if ($schools)  
                         <form action="{{ route('canteens.store',['school_id' => $school_id]) }}" method="POST">
                             @csrf
                             @method('post')
@@ -25,7 +23,6 @@
                                 <label for="name">Canteen Name:</label>
                                 <input type="text" name="canteen_name" id="canteen_name" class="form-control" required>
                             </div>
-
                             <button type="submit" class="btn btn-primary">Create Canteen</button>
                         </form>
                         @endif

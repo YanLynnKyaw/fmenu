@@ -1,13 +1,3 @@
-<!-- @foreach ($users as $user)
-    <p>{{ $user->name }} - {{ $user->email }}
-        <form action="{{ route('users.delete', $user->id) }}" method="POST" style="display: inline;">
-            @csrf
-            @method('DELETE')
-            <button type="submit">Delete</button>
-        </form>
-    </p>
-@endforeach -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('backend/css/style2.css') }}">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <title>KBTC Canteen Menu Admin Panel</title>
 </head>
 <body>
     
@@ -27,17 +19,15 @@
         </a>
         <ul class="side-menu">
             <li><a href="{{ route('schools.index') }}" data-menu="dashboard" class="{{ Request::is('dashboard*') ? 'active' : '' }}"><i class='bx bxs-dashboard'></i>School Management</a></li>
-            <li><a href="{{ route ('users.index')}}" data-menu="users-management" class="{{ Request::is('users*') ? 'active' : '' }}"><i class='bx bxs-user-detail' ></i>Users Management</a></li>
-            
-           
+            <li><a href="{{ route ('users.index')}}" data-menu="users-management" class="{{ Request::is('users*') ? 'active' : '' }}"><i class='bx bxs-user-detail' ></i>Users Management</a></li>   
         </ul>
         <ul class="side-menu">
             <li class="de">
-            <form action="{{ route('logout') }}" method="POST">
-                @csrf
-                @method('DELETE')
-                <button class="logout" type="submit"> <i class='bx bx-log-out' ></i>Logout</button>
-            </form>  
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button class="logout" type="submit"> <i class='bx bx-log-out' ></i>Logout</button>
+                </form>  
             </li>
         </ul>
 
@@ -68,7 +58,7 @@
         <main>
             <div class="header">
                 <div class="left">
-                    <h1>UserManagement | Welcome {{ Auth::user()->name }}</h1>
+                    <h1>UserManagement | User <i class='bx bx-right-arrow-alt'></i> {{ Auth::user()->name }}</h1>
                 </div>
             </div>
         
@@ -93,24 +83,6 @@
                             <tr>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
-                                <!-- <td>
-                                    <ul>
-                                        @foreach($user->getRoleNames() as $role)
-                                        
-                                            <li style="color: {{ $role === 'admin' ? 'brown' : ($role === 'editor' ? 'green' : 'black') }}">{{ $role }}
-                                            <form action="{{ route('users.updateRole', $user->id) }}" method="POST" style="display: inline;" class="dropdown">
-                                                @csrf
-                                                @method('PUT')
-                                                <select name="role" onchange="this.form.submit()">
-                                                    <option value="admin" {{ $user->hasRole('admin') ? 'selected' : '' }}>Admin</option>
-                                                    <option value="editor" {{ $user->hasRole('editor') ? 'selected' : '' }}>Editor</option>
-                                                </select>
-                                            </form>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </td> -->
-
                                 <td class="dropdown-container">
                                     <ul class="roles-list">
                                         @foreach($user->getRoleNames() as $role)
@@ -135,14 +107,12 @@
                                         @endforeach
                                     </ul>
                                 </td>
-
-
                                 <td>
-                                    <form action="{{ route('users.delete', $user->id) }}" method="POST" style="display: inline;">
+                                    <form action="{{ route('users.delete', $user->id) }}" onclick="confirmation(event)" method="POST" style="display: inline;">
                                         @csrf
                                         @method('DELETE')
                                         @if(auth()->user()->can('ed_de'))
-                                            <button type="submit" class="newbtn1">Delete</button>
+                                            <input type="submit" class="newbtn1" value="Delete">
                                         @endif
                                     </form>
                                 </td>
@@ -153,9 +123,7 @@
                 </div>   
             </div>
         </main>
-
     </div>
-
     <script src="{{ url('backend/js/app2.js')}}"></script>
 </body>
 </html>

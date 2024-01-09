@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <title>Create User</title>
+    <title>Create School</title>
 </head>
 <body>
     <div class="container mt-5">
@@ -22,7 +22,6 @@
                                 <label for="name">School Name:</label>
                                 <input type="text" name="school_name" id="school_name" class="form-control" required>
                             </div>
-
                             <button type="submit" class="btn btn-primary">Create School</button>
                         </form>
                     </div>

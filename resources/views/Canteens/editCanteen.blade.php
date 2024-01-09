@@ -6,11 +6,7 @@
 <div class="card">
     <div class="card-header">Edit Canteen Name</div>
     <div class="card-body">
-       
-            
         @if ($canteens)
-            
-        
         <form action="{{ route('canteens.update',$canteen_id) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method ('PUT')
@@ -28,12 +24,6 @@
             </div>
         </form>
         @endif
-    </div>
-    
+    </div> 
 </div>
-
-<script>
-
-</script>
-
 @endsection ('content')

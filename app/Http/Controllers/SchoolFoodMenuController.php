@@ -18,10 +18,7 @@ class SchoolFoodMenuController extends Controller
         $category = Category::whereIn('canteen_id', $canteen->pluck('canteen_id'))->get();
         $fooditem = FoodItem::whereIn('category_id', $category->pluck('category_id'))->get();
         
-        // $view = 'Show.' . $school->slug . '_food_menu';
-
-
-        return view('show_food_menu', [
+        return view('show_canteen', [
             'school' => $school,
             'canteen' => $canteen,
             'category' => $category,
@@ -29,14 +26,21 @@ class SchoolFoodMenuController extends Controller
         ]);
     }
 
-    public function showSchoolFoodMenu1($school_slug)
+    public function showCanteenData($school_name, $canteen_name)
     {
-        $school = School::where('slug', $school_slug)->with('canteen.category.fooditem')->firstOrFail();
+        $school = School::where('school_name', $school_name)->firstOrFail();
+        $canteen = Canteen::where('school_id', $school->school_id)
+            ->where('canteen_name', $canteen_name)
+            ->with('category.fooditem')
+            ->firstOrFail();
+        $category = $canteen->category;
+        $fooditem = $category->flatMap->fooditem;
 
-        $view = 'Show.' . $school->slug . '_food_menu';
-
-        return view($view, [
+        return view('show_food_menu', [
             'school' => $school,
+            'canteen' => $canteen,
+            'category' => $category,
+            'fooditem' => $fooditem,
         ]);
     }
 

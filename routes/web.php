@@ -25,6 +25,7 @@ Route::get('/', function () {
 
 //MenuShow
 Route::get('{school_slug}/FoodMenu', [SchoolFoodMenuController::class, 'showSchoolFoodMenu'])->name('show.food-menu');
+Route::get('{school_name}/{canteen_name}/FoodMenu',[SchoolFoodMenuController::class, 'showCanteenData'])->name('show_food_menu');
 
 
 Route::group(['middleware' => 'guest'], function(){
@@ -35,6 +36,7 @@ Route::group(['middleware' => 'guest'], function(){
 });
 
 Route::group(['middleware' => 'auth'], function(){
+
     //user and role
     Route::put('/users/{user}/update-role', [AuthController::class, 'updateRole'])->name('users.updateRole');
     Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');
@@ -76,7 +78,5 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('School/Canteen/Category/FoodItem/{fooditem_id}/Edit',[FoodItemController::class, 'edit'])->name('fooditem.edit');
     Route::put('School/Canteen/Category/FoodItem/{fooditem_id}/Update', [FoodItemController::class, 'update'])->name('fooditem.update');
     Route::delete('School/Canteen/Category//FoodItem/{fooditem_id}/Delete', [FoodItemController::class, 'destroy'])->name('fooditem.destroy');
-
-    
-    
+ 
 });
